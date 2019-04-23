@@ -1,29 +1,30 @@
 #include <SFML/Graphics.hpp>
+int main() {
 
-int main()
-{
-	// Initializes a new RenderWindow
-	const unsigned int WIDTH{ 200 }, HEIGHT{ 200 };
-	const std::string TITLE{ "SFML works!" };
-	sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), TITLE);
+	// Create the window of the application
+	sf::RenderWindow window(sf::VideoMode(800, 600), "Shapes");
 
-	// Initialize a circle
-	sf::CircleShape shape(100.f);			// Radius is (float) 100.0
-	shape.setFillColor(sf::Color::Green);	// Shape's color is green
+	// run the program as long as the window is open
+	while (window.isOpen()) {
 
-	while (window.isOpen())
-	{
+		// Check all the window's events that were triggered since the last iteration of the loop
 		sf::Event event;
-		while (window.pollEvent(event))
-		{
+		while (window.pollEvent(event)) {
+
+			// "close requested" event: we close the window
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
 
-		window.clear();
-		window.draw(shape);
+		// clear the window with black color
+		window.clear(sf::Color::Black);
+
+		// draw everything here...
+		// window.draw(...);
+
+		// end the current frame
 		window.display();
 	}
 
-	return 0;
+	return EXIT_SUCCESS;
 }
